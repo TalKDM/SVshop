@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./styles/products.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <title>Sv-shop</title>
+</head>
+<body>
+    <div id="head">
+        <div class="icons">
+            <a href="#"><i class="fa-brands fa-facebook fa-xl"></i></a>
+            <a href="#"><i class="fa-brands fa-twitter fa-xl"></i></a>
+            <a href="#"><i class="fa-brands fa-instagram fa-xl"></i></a>
+            <a href="#"><i class="fa-brands fa-youtube fa-xl"></i></a>
+        </div>
+        <div class="userAccount">
+            <a href="#"><i class="fa-solid fa-user fa-xl"></i> My account ⇩</a>
+        </div>
+    </div>
+    <nav>
+        <div class="contact">
+            <a href="#"><i class="fa-solid fa-phone-volume fa-xl"></i> (123) 456 789</a>
+        </div>
+        <div class="logo">
+            <a href="#"><img src="img/OnlineShopLogo150.png" alt="Sv-shop logo"></a>
+        </div>
+        <div class="cart">
+            <a href="./buy.html"><i class="fa-solid fa-cart-shopping fa-lg"></i></a>
+            <div id="cartAmount" class="cartAmount">0</div>
+        </div>
+    </nav>
+    <section>
+        <div class="sortNav">
+            <div class="select">
+                <select name="sort" id="sort">
+                    <option value="byName">By name</option>
+                    <option value="byPrice">By price</option>
+                </select>
+                <button onclick="sortProd()">Sort ⇵ </button>
+            </div>
+            <div class="inputSort">
+                <input type="text" placeholder="Search product:" oninput="sortByIn()" id="nameInput">
+            </div>
+            <div id="userNameGret">
+                <h3 id="greetingH3">Welcome  guest</h3>
+            </div>
+        </div>
+    </section>
+    <div id="shop">
+    </div>
+    <script src="./scripts/products.js"></script>
+</body>
+</html>
