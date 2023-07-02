@@ -157,6 +157,8 @@ section {
     justify-content: center;
     align-items: center;
     background-color: white;
+    border-left: 8px solid #EB690A;
+    border-right: 8px solid #EB690A;
     color: #EB690A;
     padding: 12px 5px;
     border-radius: 20px;
