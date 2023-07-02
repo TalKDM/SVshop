@@ -19,7 +19,7 @@ const signIn = () => {
         }).then(res => res.json())
         .then(data => {
             if(data.message == "ok") {
-                alert(`${data.result.name} Welcome back to Sv-shop!`)
+                alert(`${data.result.name} Welcome to Sv-shop!`)
                 localStorage.setItem("currentUser", (data.result.name))
                 location.href = "/products";
             }else if (data.message == "error") {

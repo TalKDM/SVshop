@@ -48,7 +48,28 @@ let orderListShow = () => {
         })
     }}
     
-orderListShow()
+orderListShow();
+
+let totalBill = () => {
+    fetch("/productsList",{
+        method: "get",
+        headers: {"Content-Type":"application/json"},
+    })
+    .then(res=>res.json())
+    .then(data=>{
+        let totalBillH2 = document.getElementById("totalBillH2");
+    if(basket.length !== 0) {
+        let amount = basket.map((x) => {
+            let {item, id} = x;
+            let search = data.find((y) => y.id === id) || [];
+            return item * search.price;
+        }).reduce((x,y) => x + y, 0);
+        totalBillH2.innerHTML = `Total Bill : ₪ ${amount}`
+    }}
+    )
+};
+
+totalBill();
     
 
 const updateCart = (id) => {
@@ -56,3 +77,10 @@ const updateCart = (id) => {
     document.getElementById(id).innerHTML = search.item;
     calculation();
 };
+
+
+let submitPayment = document.getElementById("submitPayment");
+
+submitPayment.addEventListener("click", () => {
+    alert("The End :)")
+})

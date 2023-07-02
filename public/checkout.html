@@ -94,7 +94,7 @@
                 <label>
                     <input type="checkbox" checked="checked" name="sameadr"> Shipping address same as billing
                 </label>
-                <input type="submit" value="Continue to checkout" class="btn">
+                <input type="submit" value="Continue to checkout" class="btn" id="submitPayment">
                 </form>
             </div>
             </div>
@@ -109,6 +109,9 @@
                 </span>
                 </h4>
                 <div onload="orderListShow()" id="productsOrderList"></div>
+                <div>
+                    <h2 id="totalBillH2"></h2>
+                </div>
                 <!-- <hr> -->
                 <!-- <p>Total <span class="price" style="color:black"><b></b></span></p> -->
             </div>

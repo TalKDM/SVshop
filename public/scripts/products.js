@@ -133,4 +133,4 @@ userNameGreet()
             })
             .join(""))
         })
-    
+    console.log(basket.map.id);
