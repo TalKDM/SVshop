@@ -16,7 +16,8 @@ let userNameGreet = () => {
     else if (hrs >= 17 && hrs <= 24)
         greet = 'Good Evening';
     userNameGreeting.innerHTML = `Welcome  ${localStorage["currentUser"]},${greet}!`
-}
+};
+
 
 
 userNameGreet()
@@ -25,8 +26,8 @@ userNameGreet()
                 method: "get",
                 headers: {"Content-Type":"application/json"},
             })
-            .then(res=>res.json())
-            .then(data=>{
+            .then(res => res.json())
+            .then(data => {
                 return (shop.innerHTML = data
                     .map((data) => {
                         let {id, name, price, img} = data;
@@ -98,3 +99,38 @@ userNameGreet()
         }
 
         calculation()
+
+
+
+
+
+        fetch("/productsList",{
+            method: "get",
+            headers: {"Content-Type":"application/json"},
+        })
+        .then(res => res.json())
+        .then(data => {
+            return (shop.innerHTML = data
+                .map((data) => {
+                    let {id, name, price, img} = data;
+                return `
+                <div id=product-id-${id} class="item">
+                <img width="220" height="300" src=${img} alt="">
+                <div class="details">
+                    <h3>${name}</h3>
+                    <p>Lorem ipsum dolor sit amet consectetur adipisicing.</p>
+                    <div class="price-qun">
+                        <h2>₪${price}</h2>
+                        <div class="buttons">
+                            <i onclick="decrement(${id})" class="fa-solid fa-minus"></i>
+                            <div id=${id} class="quantity">${search.item == undefined ? 0 : search.item}</div>
+                            <i onclick="increment(${id})" class="fa-solid fa-plus"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+                `
+            })
+            .join(""))
+        })
+    

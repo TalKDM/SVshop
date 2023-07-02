@@ -2,6 +2,7 @@ basket = JSON.parse(localStorage.getItem("data")) || [];
 let label = document.getElementById("label");
 let shoppingCart = document.getElementById("shopping-cart");
 let shopCartItem = document.getElementById("shopCartItem")
+let currentUserName = localStorage.getItem("currentUser");
 
     calculation = () => {
     let cartIcon = document.getElementById("cartAmount");
@@ -38,7 +39,7 @@ let generateCartItem = () => {
                 <div class="title-price-x">
                     <h4 class="title-price">
                         <p>${search.name}</p>
-                        <p class="cart-item-price">${search.price}</p>
+                        <p class="cart-item-price">₪${search.price}</p>
                     </h4>
                     <i onclick="removeItem(${id})" class="fa-solid fa-xmark"></i>
                 </div>
@@ -131,7 +132,7 @@ let generateCartItem = () => {
             }).reduce((x,y) => x + y, 0);
             label.innerHTML = `
             <h2>Total Bill : ₪ ${amount}</h2>
-            <button id="checkout">Checkout</button>
+            <button onclick="checkOutOrder()" id="checkout"><a href="./checkout.html">Checkout</a></button>
             <button onclick="clearCart()" id="removeAll">Clear Cart</button>
             `;
         } else return;
@@ -139,3 +140,27 @@ let generateCartItem = () => {
     }
 
     totalAmount();
+
+    const checkOutOrder = () => {
+        let checkOutBtn = document.getElementById("checkout");
+        fetch("/userOrderList", {
+            method: "post",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify({
+                currentUserName,
+                basket
+            })
+        }).then(res => res.json())
+        .then(data => {
+            if(data.message == "ok") {
+                alert(`you are redirected to the payment page`)
+                location.href = "/checkout";
+            }else if (data.message == "error")
+                alert(`${currentUserName}error - please try again`)
+            }
+        )}
+
+
+

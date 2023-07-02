@@ -2,6 +2,10 @@ const express = require("express");
 const app = express();
 const bodyParser = require("body-parser");
 const db = require("mongoose");
+require("dotenv").config();
+
+const stripe = require("stripe")(process.env.
+    STRIPE_PRIVATE_KEY);
 
 
 const url = "mongodb+srv://TalKdm:CschuldinerTkdm2988@cluster0.mfcyuc6.mongodb.net/svshop";
@@ -40,15 +44,19 @@ const productsSchema = new db.Schema ({
     img: String
 });
 
-    const pendingSchema = new db.Schema ({
-    id: String,
-    email: String,
-    products: [String]
-    });
+const orderSchema = new db.Schema({
+    name: String,
+    products: [Object]
+  });
+
 
 const userModel = db.model("user",usersSchema);
 
 const productModel = db.model("productsList", productsSchema);
+
+const orderModel = db.model("orderList", orderSchema);
+
+let result = "";
 
 app.get("/", (req,res) => {
     res.sendFile(__dirname + "/public/sign-in.html")
@@ -99,6 +107,29 @@ app.get("/productsList",async (req,res) => {
 app.get("/products", (req,res) => {
     res.sendFile(__dirname + "/public/products.html")
 });
+
+app.get("/buy", (req,res) => {
+    res.sendFile(__dirname + "/public/buy.html");
+});
+
+app.post("/userOrderList",async (req,res) => {
+    let newOrder = {
+        name: req.body.currentUserName,
+        products: req.body.basket
+    };
+    if(newOrder) {
+        res.json({message: "ok"})
+        console.log(newOrder);
+        result = await orderModel.insertMany(newOrder);
+    }else {
+        res.json({message: "error"});
+    }
+});
+
+app.get("/checkout", (req,res) => {
+    res.sendFile(__dirname + "/public/checkout.html")
+});
+
 
 
 app.listen(3000, () => {
