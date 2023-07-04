@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./styles/signup.css">
+    <title>Sign up</title>
+</head>
+<body>
+    <section>
+        <div class="container">
+            <div class="logo">
+                <img src="img/OnlineShopLogo.png" alt="Sv-shop logo">
+                <h3>Create your account</h3>
+            </div>
+                <div class="inputs">
+                    <input type="text" placeholder="Enter your name:" id="nameInput" required>
+                    <br>
+                    <input type="text" placeholder="Enter your email:" id="mailInput" required>
+                    <br>
+                    <input type="password" placeholder="Enter your password:" id="passInput" required>
+                    <br>
+                    <div id="error"></div>
+                    <button onclick="sendData()">Sign up</button>
+                </div>
+                
+        </div>
+    </section>
+    <script src="scripts/signup.js"></script>
+</body>
+</html>

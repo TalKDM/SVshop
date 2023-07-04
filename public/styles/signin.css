@@ -1,0 +1,94 @@
+
+*{
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+section {
+    min-height: 100vh;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 50px 0;
+}
+
+.container {
+    padding: 30px;
+    background-color: #e1e2e2;
+    box-shadow: 5px 0px 20px #00000011;
+    width: 90%;
+    max-width: 400px;
+    border-radius: 8px;
+}
+
+.logo{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.logo img {
+    width: 80%;
+    height: 80%;
+}
+
+.inputs {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    color: black;
+}
+
+.inputs input {
+    outline: none;
+    border: 1px solid grey;
+    height: 40px;
+    width: 300px;
+    margin-top: 5px;
+    border-radius: 4px;
+    padding: 10px;
+    font-size: 18px;
+}
+
+.inputs button {
+    display: inline-block;
+    width: 300px;
+    border: none;
+    outline: none;
+    height: 35px;
+    background-color: royalblue;
+    transition: 0.3s ease background-color;
+    font-size: 18px;
+    cursor: pointer;
+    margin-top: 10px;
+    color: white;
+    border-radius: 6px;
+}
+
+.inputs button:hover {
+    background-color: rgb(31, 77, 212);
+}
+
+.underField {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.underField h4 {
+    margin-top: 10px;
+}
+
+.underField h4 a {
+    text-decoration: none;
+    color: black;
+}
+
+#error {
+    color: red;
+    font-size: 17px;
+    font-weight: bolder;
+}

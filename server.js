@@ -46,8 +46,8 @@ const productsSchema = new db.Schema ({
 
 const orderSchema = new db.Schema({
     name: String,
-    products: [Object]
-  });
+    product: [Object]
+});
 
 
 const userModel = db.model("user",usersSchema);
@@ -115,7 +115,7 @@ app.get("/buy", (req,res) => {
 app.post("/userOrderList",async (req,res) => {
     let newOrder = {
         name: req.body.currentUserName,
-        products: req.body.basket
+        product: req.body.basket
     };
     if(newOrder) {
         res.json({message: "ok"})
@@ -130,7 +130,24 @@ app.get("/checkout", (req,res) => {
     res.sendFile(__dirname + "/public/checkout.html")
 });
 
+app.get("/allOrders",async (req,res) => {
+    let allOrders = await orderModel.find({})
+    res.json(allOrders);
+})
 
+app.use(middleAdminPage)
+
+app.get("/all",async (req,res) => {
+    res.sendFile(__dirname + "/public/all.html");
+})
+
+function middleAdminPage(req,res,next) {
+    if(req.query.admin == "true")
+    next();
+    else {
+        res.status(400).send("no permission");
+    }
+};
 
 app.listen(3000, () => {
     console.log("Server works on port 3000");
